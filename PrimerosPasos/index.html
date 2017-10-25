@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <div id="app">
+        <div v-if="mostrar">
+            {{mensaje}}
+            <!-- <img v-bind:src="imagen">   -->
+            <!-- y la forma abreviada de v-bind-->
+            <img :src="imagen">
+            <!-- <button v-on:click="toggleMostrar">Mostrar/Ocultar</button> -->
+            <!-- y la forma abreviada de v-on -->
+        </div>
+        <button v-on:click="toggleMostrar">Mostrar/Ocultar</button>
+
+        <ul>
+            <li v-for="(curso, index) in cursos" :key="index">
+                <a :href="curso.url"> {{curso.name}} </a>
+            </li>
+        </ul>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.3/vue.js"></script>
+    
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                mostrar: true,
+                mensaje: 'Hola Vue....',
+                imagen: "http://laravelacademy.org/wp-content/uploads/2016/08/00-featured-vuejs-logo-simple-256x128.jpg",
+                cursos: [
+                    {   name: "Fundamentos", url:"http://www.google.com.ar"  },
+                    {   name: "Fundamentos React", url:"http://www.google.com.ar"  },
+                    {   name: "Fundamentos Vue", url:"http://www.google.com.ar"  }
+                ]
+            },
+           methods: {
+                toggleMostrar: function () {
+                    this.mostrar= !this.mostrar
+                }
+            }
+        })
+    </script>
+</body>
+</html>
